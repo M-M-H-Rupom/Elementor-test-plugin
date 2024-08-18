@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Elementor-test 
+ * Plugin Name: Elementor-test-widget 
  * Description: Hello Elementor 
  * Version: 1.0
  * Author: Rupom
