@@ -29,3 +29,22 @@ function register_test_widget( $widgets_manager ) {
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
+// register category
+function elementor_test_widget_categories( $elements_manager ) {
+
+	$elements_manager->add_category(
+		'test-category',
+		[
+			'title' => esc_html__( 'Test Category', 'elementor_test' ),
+			'icon' => 'fa fa-image',
+		]
+	);
+	$elements_manager->add_category(
+		'second-category',
+		[
+			'title' => esc_html__( 'Second Category', 'elementor_test' ),
+			'icon' => 'fa fa-plug',
+		]
+	);
+}
+add_action( 'elementor/elements/categories_registered', 'elementor_test_widget_categories' );
