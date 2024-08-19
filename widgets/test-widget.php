@@ -241,13 +241,13 @@ class Elementor_test_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'margin',
 			[
-				'label' => esc_html__( 'Margin', 'textdomain' ),
+				'label' => esc_html__( 'Margin', 'elementor_test' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'default' => [
-					'top' => 2,
+					'top' => 0,
 					'right' => 0,
-					'bottom' => 2,
+					'bottom' => 0,
 					'left' => 0,
 					'unit' => 'px',
 					'isLinked' => false,
@@ -259,7 +259,173 @@ class Elementor_test_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
+		// Gallery control
+		$this->start_controls_section(
+			'content_gallery',
+			[
+				'label' => esc_html__( 'Gallery', 'elementor_test' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
 
+		$this->add_control(
+			'gallery_images',
+			[
+				'label' => esc_html__( 'Add Images', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::GALLERY,
+				'show_label' => false,
+				'default' => [],
+			]
+		);
+
+		$this->end_controls_section();
+		// icons
+		$this->start_controls_section(
+			'content_icon',
+			[
+				'label' => esc_html__( 'Icon', 'elementor_test' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'demo_icon',
+			[
+				'label' => esc_html__( 'Social Icons', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => [
+					'fa fa-facebook',
+					'fa fa-flickr',
+					'fa fa-google-plus',
+					'fa fa-instagram',
+					'fa fa-linkedin',
+					'fa fa-pinterest',
+					'fa fa-reddit',
+					'fa fa-twitch',
+					'fa fa-twitter',
+					'fa fa-vimeo',
+					'fa fa-youtube',
+					'fa fa-phone',
+					'fa fa-user',
+				],
+				'default' => 'fa fa-facebook',
+			]
+		);
+
+		$this->end_controls_section();
+		// font family
+		$this->start_controls_section(
+			'font_style',
+			[
+				'label' => esc_html__( 'Font', 'elementor_test' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->add_control(
+			'font_popover_toggle',
+			[
+				'label' => esc_html__( 'Font', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
+				'label_off' => esc_html__( 'Default', 'elementor_test' ),
+				'label_on' => esc_html__( 'Custom', 'elementor_test' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
+		$this->start_popover();
+
+		$this->add_control(
+			'font_paragraph',
+			[
+				'label' => esc_html__( 'Font Paragraph', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::FONT,
+				'default' => "'Open Sans', sans-serif",
+				'selectors' => [
+					'{{WRAPPER}} .test_font_paragraph' => 'font-family: {{VALUE}}',
+				],
+			]
+		);
+		$this->add_control(
+			'font_heading',
+			[
+				'label' => esc_html__( 'Font Heading', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::FONT,
+				'default' => "'Open Sans', sans-serif",
+				'selectors' => [
+					'{{WRAPPER}} .test_font_headding' => 'font-family: {{VALUE}}',
+				],
+			]
+		);
+		// slider control
+		$this->add_control(
+			'font_size',
+			[
+				'label' => esc_html__( 'Font size', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 16,
+						'max' => 50,
+						'step' => 2,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 16,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .test_font_paragraph' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_popover();
+
+		$this->end_controls_section();
+
+		// typography
+		$this->start_controls_section(
+			'test_typography',
+			[
+				'label' => esc_html__( 'Typography', 'elementor_test' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'content_typography',
+				'selector' => '{{WRAPPER}} .test_font_paragraph',
+			]
+		);
+
+		$this->end_controls_section();
+
+		// text shadow
+		$this->start_controls_section(
+			'content_shadow',
+			[
+				'label' => esc_html__( 'Shadow', 'textdomain' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'text_shadow',
+				'selector' => '{{WRAPPER}} .test_font_headding',
+			]
+		);
+
+		$this->end_controls_section();
+		
 
 	}
 	protected function render(){
@@ -276,6 +442,14 @@ class Elementor_test_Widget extends \Elementor\Widget_Base {
 		}
 		echo esc_html( $settings['text_align']);
 		echo "<h2 class='text_margin'>" . "Text margin". "</h2>";
+		foreach ( $settings['gallery_images'] as $image ) {
+			echo '<img src="' . esc_attr( $image['url'] ) . '">';
+		}
+		?>
+			<i class="<?php echo esc_attr( $settings['demo_icon'] ); ?>" ></i>
+			<p class="test_font_paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas odio nostrum ad!</p>
+			<h2 class="test_font_headding">Lorem ipsum dolor sit amet.</h2>
+		<?php
 	}
 	protected function content_template(){
 		?>
@@ -303,6 +477,12 @@ class Elementor_test_Widget extends \Elementor\Widget_Base {
 			{{{settings.text_align}}}
 		</div>
 		<h2 class='text_margin'>Text margin</h2>
+		<# _.each( settings.gallery_images, function( image ) { #>
+			<img src="{{ image.url }}">
+		<# }); #>
+		<i class="{{ settings.demo_icon }}" ></i>
+		<p class="test_font_paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas odio nostrum ad!</p>
+		<h2 class="test_font_headding">Lorem ipsum dolor sit amet.</h2>
 		<?php
 		
 	}
