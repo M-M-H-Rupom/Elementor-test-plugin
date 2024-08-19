@@ -24,11 +24,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 function register_test_widget( $widgets_manager ) {
 
 	require_once( __DIR__ . '/widgets/test-widget.php' );
+	require_once( __DIR__ . '/widgets/demo-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
+	$widgets_manager->register( new \Elementor_demo_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
+
+// function register_test_widget( $widgets_manager ) {
+
+// 	require_once( __DIR__ . '/widgets/test-widget.php' );
+
+// 	$widgets_manager->register( new \Elementor_test_Widget() );
+
+// }
+// add_action( 'elementor/widgets/register', 'register_test_control_widget' );
 // register category
 function elementor_test_widget_categories( $elements_manager ) {
 
