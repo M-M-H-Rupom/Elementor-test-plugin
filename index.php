@@ -25,36 +25,36 @@ function register_test_widget( $widgets_manager ) {
 
 	require_once( __DIR__ . '/widgets/test-widget.php' );
 	require_once( __DIR__ . '/widgets/demo-widget.php' );
+	require_once( __DIR__ . '/widgets/pricing-table.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
+	$widgets_manager->register( new \Elementor_pricing_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
 
-// function register_test_widget( $widgets_manager ) {
+function my_widget_frontend_style() {
+	wp_enqueue_style( 'frontent_froala_css',plugin_dir_url( __FILE__ ).'assets/css/froala.css' );
+	wp_enqueue_style( 'frontent_bootstrap_css', plugin_dir_url( __FILE__ ).'assets/css/bootstrap.css' );
+	wp_enqueue_script( 'frontent_bootstrap_js', plugin_dir_url( __FILE__ ).'assets/js/bootstrap.js', 'false',time(),'true');
+}
+add_action( 'elementor/frontend/after_enqueue_styles', 'my_widget_frontend_style' );
 
-// 	require_once( __DIR__ . '/widgets/test-widget.php' );
-
-// 	$widgets_manager->register( new \Elementor_test_Widget() );
-
-// }
-// add_action( 'elementor/widgets/register', 'register_test_control_widget' );
-// register category
 function elementor_test_widget_categories( $elements_manager ) {
 
 	$elements_manager->add_category(
 		'test-category',
 		[
 			'title' => esc_html__( 'Test Category', 'elementor_test' ),
-			'icon' => 'fa fa-image',
+			// 'icon' => 'fa fa-image',
 		]
 	);
 	$elements_manager->add_category(
 		'second-category',
 		[
 			'title' => esc_html__( 'Second Category', 'elementor_test' ),
-			'icon' => 'fa fa-plug',
+			// 'icon' => 'fa fa-plug',
 		]
 	);
 }
