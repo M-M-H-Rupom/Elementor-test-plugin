@@ -12,7 +12,7 @@ class Elementor_pricing_Widget extends \Elementor\Widget_Base {
 		return esc_html__( 'Pricing table', 'elementor_test' );
 	}
 	public function get_icon(){
-		return 'fa fa-price';
+		return 'eicon-price-table';
 	}
 	public function get_categories(){
 		return ['test-category'];
