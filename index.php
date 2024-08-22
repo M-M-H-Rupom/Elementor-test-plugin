@@ -27,13 +27,15 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/demo-widget.php' );
 	require_once( __DIR__ . '/widgets/pricing-table.php' );
 	require_once( __DIR__ . '/widgets/pricing-table-another.php' );
-	require_once( __DIR__ . '/widgets/progressbar-widget.php' );
+	// require_once( __DIR__ . '/widgets/progressbar-widget.php' );
+	require_once( __DIR__ . '/widgets/features-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
 	$widgets_manager->register( new \Elementor_pricing_Widget() );
 	$widgets_manager->register( new \Elementor_pricing_another_Widget() );
-	$widgets_manager->register( new \Elementor_progressbar_Widget() );
+	// $widgets_manager->register( new \Elementor_progressbar_Widget() );
+	$widgets_manager->register( new \Elementor_features_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
@@ -52,8 +54,8 @@ add_action( 'elementor/editor/after_enqueue_scripts', 'my_widgets_editor_scripts
 
 function my_widgets_frontend_scripts(){
 	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'progressbar_js', plugin_dir_url( __FILE__ ).'assets/js/progressbar.js', array('jquery'),time(),'true');
-	wp_enqueue_script( 'script_js', plugin_dir_url( __FILE__ ).'assets/js/script.js', ['jquery'],time(),'true');
+	// wp_enqueue_script( 'progressbar_js', plugin_dir_url( __FILE__ ).'assets/js/progressbar.js', array('jquery'),time(),'true');
+	// wp_enqueue_script( 'script_js', plugin_dir_url( __FILE__ ).'assets/js/script.js', ['jquery'],time(),'true');
 }
 add_action( 'elementor/frontend/after_register_scripts', 'my_widgets_frontend_scripts' );
 
