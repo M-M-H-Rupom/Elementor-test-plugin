@@ -29,6 +29,7 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/pricing-table-another.php' );
 	// require_once( __DIR__ . '/widgets/progressbar-widget.php' );
 	require_once( __DIR__ . '/widgets/features-widget.php' );
+	require_once( __DIR__ . '/widgets/flipclock-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -36,6 +37,7 @@ function register_test_widget( $widgets_manager ) {
 	$widgets_manager->register( new \Elementor_pricing_another_Widget() );
 	// $widgets_manager->register( new \Elementor_progressbar_Widget() );
 	$widgets_manager->register( new \Elementor_features_Widget() );
+	$widgets_manager->register( new \Elementor_flipclock_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
@@ -44,13 +46,16 @@ add_action( 'elementor/widgets/register', 'register_test_widget' );
 function my_widgets_frontend_style() {
 	wp_enqueue_style( 'frontent_froala_css',plugin_dir_url( __FILE__ ).'assets/css/froala.css' );
 	wp_enqueue_style( 'frontent_bootstrap_css', plugin_dir_url( __FILE__ ).'assets/css/bootstrap.css' );
+	wp_enqueue_style( 'frontent_flipclock_css', plugin_dir_url( __FILE__ ).'assets/css/flipclock.css' );
 }
 add_action( 'elementor/frontend/after_enqueue_styles', 'my_widgets_frontend_style' );
 
 function my_widgets_editor_scripts(){
 	wp_enqueue_script( 'frontent_bootstrap_js', plugin_dir_url( __FILE__ ).'assets/js/bootstrap.js', 'false',time(),'true');
+	wp_enqueue_script( 'frontent_flipclock_js', plugin_dir_url( __FILE__ ).'assets/js/flipclock.js', array('jquery'),'1.0','true');
+	wp_enqueue_script( 'frontent_main_js', plugin_dir_url( __FILE__ ).'assets/js/main.js', array('jquery','frontent_flipclock_js'),time(),'true');
 }
-add_action( 'elementor/editor/after_enqueue_scripts', 'my_widgets_editor_scripts' );
+add_action( 'elementor/frontend/after_enqueue_scripts', 'my_widgets_editor_scripts' );
 
 function my_widgets_frontend_scripts(){
 	wp_enqueue_script('jquery');
