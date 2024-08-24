@@ -1,0 +1,14 @@
+.infobox{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+.infobox .info_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+/* .infobox .info_content p{
+    
+} */

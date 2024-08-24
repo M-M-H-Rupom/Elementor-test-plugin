@@ -9,7 +9,7 @@ class Elementor_flipclock_Widget extends \Elementor\Widget_Base {
 		return 'flipclock';
 	}
 	public function get_title(){
-		return esc_html__( 'Flip clock', 'elementor_test' );
+		return esc_html__( 'Flip Box', 'elementor_test' );
 	}
 	public function get_icon(){
 		return 'eicon-clock';
@@ -17,9 +17,7 @@ class Elementor_flipclock_Widget extends \Elementor\Widget_Base {
 	public function get_categories(){
 		return ['test-category'];
 	}
-	public function get_script_depends() {
-        return ['progressbar-js'];
-    }
+
 	protected function register_controls() {
 		$this->start_controls_section(
 			'flipclok_content',
@@ -28,7 +26,55 @@ class Elementor_flipclock_Widget extends \Elementor\Widget_Base {
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
+		
+		$this->add_control(
+			'setdate',
+			[
+				'label' => esc_html__( 'Set Dates', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'min' => 3,
+				'max' => 1000,
+				'step' => 1,
+				'default' => 3,
+			]
+		);
 
+		$this->add_control(
+			'due_date',
+			[
+				'label' => esc_html__( 'Target Time', 'elementor_test' ),
+				'type' => \Elementor\Controls_Manager::DATE_TIME,
+			]
+		);
+		$this->add_control( 
+			'display_type', 
+			[
+				'label'   => __( 'Display Type', 'elementor_test' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'clock'    => __( 'Clock', 'elementor_test' ),
+					'timerc'   => __( 'Time CountDown', 'elementor_test' ),
+					'genericc' => __( 'Normal CountDown', 'elementor_test' ),
+				],
+				'default' => 'clock'
+			] 
+		);
+
+		$this->add_control( 
+			'clock_format', 
+			[
+				'label'     => __( 'Clock Format', 'elementor_test' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'options'   => [
+					'12' => __( '12 Hour', 'elementor_test' ),
+					'24' => __( '24 Hour', 'elementor_test' ),
+				],
+				'default'   => '12',
+				'condition' => [
+					'display_type' => 'clock'
+				]
+			]
+		);
 		$this->add_control(
 			'flipclock_title',
 			[
@@ -44,7 +90,12 @@ class Elementor_flipclock_Widget extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-		<div class="clock"></div>
+		<div class="clock" id="test_id" 
+		data-set-dates="<?php echo $settings['setdate'] ?>"
+		data-target-time="<?php echo $settings['due_date'] ?>"
+		>
+
+		</div>
 		<?php
 	}
 
@@ -52,3 +103,5 @@ class Elementor_flipclock_Widget extends \Elementor\Widget_Base {
 		
 	// }
 }
+
+

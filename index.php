@@ -30,6 +30,7 @@ function register_test_widget( $widgets_manager ) {
 	// require_once( __DIR__ . '/widgets/progressbar-widget.php' );
 	require_once( __DIR__ . '/widgets/features-widget.php' );
 	require_once( __DIR__ . '/widgets/flipclock-widget.php' );
+	require_once( __DIR__ . '/widgets/infobox-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -38,6 +39,7 @@ function register_test_widget( $widgets_manager ) {
 	// $widgets_manager->register( new \Elementor_progressbar_Widget() );
 	$widgets_manager->register( new \Elementor_features_Widget() );
 	$widgets_manager->register( new \Elementor_flipclock_Widget() );
+	$widgets_manager->register( new \Elementor_info_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
@@ -47,6 +49,7 @@ function my_widgets_frontend_style() {
 	wp_enqueue_style( 'frontent_froala_css',plugin_dir_url( __FILE__ ).'assets/css/froala.css' );
 	wp_enqueue_style( 'frontent_bootstrap_css', plugin_dir_url( __FILE__ ).'assets/css/bootstrap.css' );
 	wp_enqueue_style( 'frontent_flipclock_css', plugin_dir_url( __FILE__ ).'assets/css/flipclock.css' );
+	wp_enqueue_style( 'frontent_custom_css', plugin_dir_url( __FILE__ ).'assets/css/style.css' );
 }
 add_action( 'elementor/frontend/after_enqueue_styles', 'my_widgets_frontend_style' );
 
