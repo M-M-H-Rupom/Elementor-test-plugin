@@ -5,7 +5,6 @@
             var user_date = $(scope).find('.clock').data('set-dates')
             var target_time = $(scope).find('.clock').data('target-time')
             var targetDate = new Date(target_time.replace(' ', 'T'));
-            alert(targetDate);
             
             var clock;
             var currentDate = new Date();
@@ -14,8 +13,9 @@
             var diff = (targetDate.getTime() - currentDate.getTime()) / 1000;
 
             clock = $(scope).find('.clock').FlipClock(diff, {
+                'autoStart': false,
                 clockFace: 'DailyCounter',
-                countdown: true,
+                // countdown: true,
                 showSeconds: true
             });
             // alert('test')

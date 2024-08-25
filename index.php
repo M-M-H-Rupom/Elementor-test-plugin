@@ -31,6 +31,8 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/features-widget.php' );
 	require_once( __DIR__ . '/widgets/flipclock-widget.php' );
 	require_once( __DIR__ . '/widgets/infobox-widget.php' );
+	require_once( __DIR__ . '/widgets/dualheading-widget.php' );
+	require_once( __DIR__ . '/widgets/protected-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -40,6 +42,8 @@ function register_test_widget( $widgets_manager ) {
 	$widgets_manager->register( new \Elementor_features_Widget() );
 	$widgets_manager->register( new \Elementor_flipclock_Widget() );
 	$widgets_manager->register( new \Elementor_info_Widget() );
+	$widgets_manager->register( new \Elementor_dualheading_Widget() );
+	$widgets_manager->register( new \Elementor_protected_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
