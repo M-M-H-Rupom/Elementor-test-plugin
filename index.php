@@ -33,6 +33,9 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/infobox-widget.php' );
 	require_once( __DIR__ . '/widgets/dualheading-widget.php' );
 	require_once( __DIR__ . '/widgets/protected-widget.php' );
+	require_once( __DIR__ . '/widgets/image-hover.php' );
+	require_once( __DIR__ . '/widgets/icon-text.php' );
+	require_once( __DIR__ . '/widgets/demo-portfolio.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -44,6 +47,9 @@ function register_test_widget( $widgets_manager ) {
 	$widgets_manager->register( new \Elementor_info_Widget() );
 	$widgets_manager->register( new \Elementor_dualheading_Widget() );
 	$widgets_manager->register( new \Elementor_protected_Widget() );
+	$widgets_manager->register( new \Elementor_imagehover_Widget() );
+	$widgets_manager->register( new \Elementor_icontext_Widget() );
+	$widgets_manager->register( new \Elementor_demoportfolio_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );

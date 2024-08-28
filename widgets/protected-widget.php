@@ -63,7 +63,7 @@ class Elementor_protected_Widget extends \Elementor\Widget_Base {
         <p><?php echo $settings['message']?></p>
         <div>
             <form action="<?php echo the_permalink() ?>" method="POST">
-                <input type="text" name="p_hidden" value="<?php echo md5($settings['password']) ?>">
+                <input type="hidden" name="p_hidden" value="<?php echo md5($settings['password']) ?>">
                 <label for="">
                     <span>Input Password</span>
                     <input type="password" name="p_password" id="">
