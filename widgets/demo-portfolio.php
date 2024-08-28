@@ -59,7 +59,22 @@ class Elementor_demoportfolio_Widget extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-
+        <div class="demo_product_cat">
+            <ul>
+                <?php 
+                $p_cats = get_terms(array(
+                    'taxonomy'   => 'product_cat',
+                    'hide_empty' => false,
+                ));
+                foreach($p_cats as $single_cat){
+                    ?> 
+                    <li><?php echo $single_cat->name ?></li>
+                    <?php
+                }
+                ?>
+                <li></li>
+            </ul>
+        </div>
 		<?php
 	}
 }
