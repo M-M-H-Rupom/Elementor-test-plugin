@@ -102,6 +102,7 @@ class Elementor_imagehover_Widget extends \Elementor\Widget_Base {
 				</div>
 			</div>
 		</section>
+		
 		<?php
 	}
 }

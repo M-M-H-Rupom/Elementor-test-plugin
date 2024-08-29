@@ -37,6 +37,7 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/icon-text.php' );
 	require_once( __DIR__ . '/widgets/demo-portfolio.php' );
 	require_once( __DIR__ . '/widgets/content-widget.php' );
+	require_once( __DIR__ . '/widgets/team-menbar.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -52,6 +53,7 @@ function register_test_widget( $widgets_manager ) {
 	$widgets_manager->register( new \Elementor_icontext_Widget() );
 	$widgets_manager->register( new \Elementor_demoportfolio_Widget() );
 	$widgets_manager->register( new \Elementor_personalcontent_Widget() );
+	$widgets_manager->register( new \Elementor_teammember_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
@@ -69,8 +71,12 @@ function my_widgets_editor_scripts(){
 	wp_enqueue_script( 'frontent_bootstrap_js', plugin_dir_url( __FILE__ ).'assets/js/bootstrap.js', 'false',time(),'true');
 	wp_enqueue_script( 'frontent_flipclock_js', plugin_dir_url( __FILE__ ).'assets/js/flipclock.js', array('jquery'),'1.0','true');
 	wp_enqueue_script( 'frontent_main_js', plugin_dir_url( __FILE__ ).'assets/js/main.js', array('jquery','frontent_flipclock_js'),time(),'true');
+	wp_localize_script('frontent_main_js', 'ajaxurl', array(
+		'url' => admin_url('admin-ajax.php'),
+	));
 }
 add_action( 'elementor/frontend/after_enqueue_scripts', 'my_widgets_editor_scripts' );
+
 
 function my_widgets_frontend_scripts(){
 	wp_enqueue_script('jquery');

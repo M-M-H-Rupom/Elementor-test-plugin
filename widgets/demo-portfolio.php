@@ -59,7 +59,10 @@ class Elementor_demoportfolio_Widget extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-        <div class="demo_product_cat">
+		<div class="show_cat_product">
+			<span>Show product</span>
+		</div>
+        <!-- <div class="demo_product_cat">
             <ul>
                 <?php 
                 $p_cats = get_terms(array(
@@ -74,7 +77,36 @@ class Elementor_demoportfolio_Widget extends \Elementor\Widget_Base {
                 ?>
                 <li></li>
             </ul>
-        </div>
+        </div> -->
 		<?php
+		$postfolios = new WP_Query([
+			'posts_per_page'=>-1,
+			'post_type'=>'porfolio',
+			'post_status'=>'publish'
+		]);
+		echo '<div class="portfolio-grid portfolio-gallery grid-4 gutter">';
+		while($postfolios->have_posts()){
+			$postfolios->the_post();
+			$image_url  = get_the_post_thumbnail_url(get_the_ID(),'large');
+			?>
+			<div class="portfolio-item">
+				<a href="<?php echo esc_url($image_url)  ;?>" class="portfolio-image popup-gallery"
+				title="View details">
+				<img src="<?php echo esc_url($image_url)  ;?>" alt="" />
+				<div class="portfolio-hover-title">
+					<div class="portfolio-content">
+						<h6><?php the_title() ;?></h6>
+						<div class="portfolio-category">
+							<span><?php the_excerpt() ;?></span>
+						</div>
+					</div>
+				</div>
+            	</a>
+			</div>
+			<?php
+		}
+		echo '</div>';
+		wp_reset_query();
+
 	}
 }

@@ -24,4 +24,21 @@
             // }, diff * 1000);
         });
     });
+
+    $('.show_cat_product').on('click',function(){
+        $.ajax({
+            url: ajaxurl.url, 
+            type: 'POST',
+            data: {
+                action: 'load_category_products', 
+                category: '',
+            },
+            // success: function(response) {
+            //     $('#product-container').html(response);
+            // },
+            // error: function() {
+            //     alert('Error loading products.');
+            // }
+        });
+    })
 })(jQuery);
