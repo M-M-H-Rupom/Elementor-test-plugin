@@ -39,6 +39,7 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/content-widget.php' );
 	require_once( __DIR__ . '/widgets/team-menbar.php' );
 	require_once( __DIR__ . '/widgets/service-widget.php' );
+	require_once( __DIR__ . '/widgets/carousel-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -56,6 +57,7 @@ function register_test_widget( $widgets_manager ) {
 	$widgets_manager->register( new \Elementor_personalcontent_Widget() );
 	$widgets_manager->register( new \Elementor_teammember_Widget() );
 	$widgets_manager->register( new \Elementor_service_Widget() );
+	$widgets_manager->register( new \Elementor_carousel_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
