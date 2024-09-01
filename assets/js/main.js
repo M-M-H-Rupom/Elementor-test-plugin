@@ -41,4 +41,21 @@
             // }
         });
     })
+
+    $('#submit_massage').on('click',function(){
+        // alert('submited');
+        $.ajax({
+            type: "POST",
+            url: ajaxurl.url,
+            data: {
+                action: 'form_submit',
+                
+            },
+            success: function(response) {
+                alert('Send massage successfully!');
+                console.log(response);
+                
+            },
+        });
+    })
 })(jQuery);

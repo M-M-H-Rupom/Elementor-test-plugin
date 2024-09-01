@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; 
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'ajax/ajax-handle-form.php';
 // function register_test_control( $controls_manager ) {
 
 // 	require_once( __DIR__ . '/controls/test.php' );
@@ -40,6 +41,7 @@ function register_test_widget( $widgets_manager ) {
 	require_once( __DIR__ . '/widgets/team-menbar.php' );
 	require_once( __DIR__ . '/widgets/service-widget.php' );
 	require_once( __DIR__ . '/widgets/carousel-widget.php' );
+	require_once( __DIR__ . '/widgets/contact-widget.php' );
 
 	$widgets_manager->register( new \Elementor_test_Widget() );
 	$widgets_manager->register( new \Elementor_demo_Widget() );
@@ -58,6 +60,7 @@ function register_test_widget( $widgets_manager ) {
 	$widgets_manager->register( new \Elementor_teammember_Widget() );
 	$widgets_manager->register( new \Elementor_service_Widget() );
 	$widgets_manager->register( new \Elementor_carousel_Widget() );
+	$widgets_manager->register( new \Elementor_contact_Widget() );
 
 }
 add_action( 'elementor/widgets/register', 'register_test_widget' );
